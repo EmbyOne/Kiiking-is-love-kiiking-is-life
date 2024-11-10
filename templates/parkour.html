@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Parkour{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/parkour.css') }}">
+{% endblock %}
+
+{% block content %}
+<h2>Parkour</h2>
+<div class="upload-container">
+    <div class="upload-square" id="drop-zone" onclick="document.getElementById('file-input').click()">
+        <input type="file" id="file-input" accept="image/*">
+        <img id="preview-image" class="preview-image" src="" style="display: none;">
+        <div class="upload-text" id="upload-text">Click or drag image here</div>
+    </div>
+    
+    <div class="form-container">
+        <input type="text" id="text-input" class="text-input" placeholder="Enter your text here">
+        <button id="submit-button" class="submit-button">Submit</button>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/image_upload.js') }}"></script>
+{% endblock %}
