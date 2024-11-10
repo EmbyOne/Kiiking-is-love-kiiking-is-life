@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sportscard Generator</title>
+    <style>
+        /* Reset default margins and ensure full viewport coverage */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Prevents scrollbars */
+        }
+        
+        /* Make iframe fill the entire viewport */
+        iframe {
+            display: block; /* Removes default inline spacing */
+            width: 100%;
+            height: 100%;
+            border: none; /* Removes default iframe border */
+        }
+    </style>
+</head>
+<body>
+    <iframe 
+        src="http://127.0.0.1:5000"
+        frameborder="0"
+        allowfullscreen="true"
+        sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+    ></iframe>
+</body>
+</html>
