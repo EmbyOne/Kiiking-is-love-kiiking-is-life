@@ -1,7 +1,12 @@
 img {
     max-width: 20%;
     max-height: 20%;
+    position: absolute;
+    right: 50px;
+    top: 50px;
 }
+body{font-family: 'Trebuchet MS', Arial, sans-serif; background-color: #efa8b8;}
+
 .upload-container {
     display: flex;
     flex-direction: column;
@@ -13,7 +18,7 @@ img {
 .upload-square {
     width: 200px;
     height: 200px;
-    border: 2px dashed #ccc;
+    border: 2px dashed #030303;
     border-radius: 4px;
     cursor: pointer;
     display: flex;
