@@ -1,1 +1,15 @@
-body{background-color: #d4a0a7;}
+body{background-color: #D6E3F8;}
+h2{font-size: 35px;
+    position: absolute;
+    top: 42px}
+    .kiiking{
+        width: 25%; 
+        margin: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        position: absolute;
+        left: 0;
+        margin-top: 50px;
+        }

@@ -5,7 +5,8 @@ img {
     right: 50px;
     top: 50px;
 }
-body{font-family: 'Trebuchet MS', Arial, sans-serif; background-color: #efa8b8;}
+body{font-family: 'Trebuchet MS', Arial, sans-serif;
+     background-color: #C2E4EA;}
 
 
 
@@ -42,6 +43,9 @@ body{font-family: 'Trebuchet MS', Arial, sans-serif; background-color: #efa8b8;}
     align-items: center;
     gap: 20px;
     padding: 20px;
+    position: absolute;
+    margin-top: 300px;
+    margin-left: 200px;
 }
 
 .upload-square {

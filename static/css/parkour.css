@@ -1,1 +1,15 @@
-body{background-color: #ff8c42;}
+body{background-color: #CCDAD1;}
+h2{font-size: 35px;
+    position: absolute;
+    top: 42px}
+    .parkuur{
+        width: 25%; 
+        margin: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        position: absolute;
+        left: 0;
+        margin-top: 50px;
+        }
