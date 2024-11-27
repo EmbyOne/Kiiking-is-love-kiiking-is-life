@@ -1,36 +1,49 @@
 {% extends "base.html" %}
+{% block title %}Ronimiskaardid{% endblock %}
 
-{% block title %}Climbing{% endblock %}
-
-{% block extra_css %}
+{% block extra_styles %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/climbing.css') }}">
 {% endblock %}
 
 {% block content %}
-<h2>Climbing</h2>
-<div class="Ronimine" >
-    <p>
-        Ronimine (EN climbing) on füüsiline ja vaimne spordiala, mille käigus ronitakse mööda kaljuseinu, tehisseinu või looduslikel moodustustel, kasutates jõudu ja lahendades radu kui puslesid.
-    </p>
-    <p>Ronimist saab mitmel viisil harrastada:</p>
-    <ol>
-        <li>Bouldering: madalad seinad (4-5m), ilma abivahenditeta. Keskendub peamiselt lühikestele ja jõulistele liigutustele.</li>
-        <li>Sportronimine: Köitega ronimine, eesmärgiks on läbida kindel rada, kasutades füüsilist jõudu ja vastupidavust.</li>
-        <li>Kiirronimine: Võistluse stiilis ronimine, selle jaoks on standardiseeritud rada.</li>
-    </ol>
-</div>
-<div class="upload-container">
-    <div class="upload-square" id="drop-zone" onclick="document.getElementById('file-input').click()">
-        <input type="file" id="file-input" accept="image/*">
-        <img id="preview-image" class="preview-image" src="" style="display: none;">
-        <div class="upload-text" id="upload-text">Click or drag image here</div>
-    </div>
-    
-    <div class="form-container">
-        <input type="text" id="text-input" class="text-input" placeholder="Enter text here">
-        <button id="submit-button" class="submit-button">Submit</button>
-    </div>
+
+<div class="leht-pealkiri">
+    <h1 id="sport-name" >Ronimiskaardid</h1>
 </div>
 
+<div class="kirjeldus">
+Ronimine on spordiala, mis nõuab nii füüsilist jõudu kui ka tehnilist oskust. See hõlmab nii sise- kui ka välitingimustes ronimist, 
+kasutades erinevaid tehnikaid ja varustust. Ronimine arendab nii keha kui ka vaimu, nõudes keskendumist, probleemilahendust ja vastupidavust.
+</div>
+
+<div class="kaardi-vorm">
+    <div>
+        <div class="vorm-grupp">
+            <input type="text" id="text-input" class="teksti-sisend" placeholder="Sisesta sportlase nimi" required>
+        </div>
+
+        <div class="vorm-grupp">
+            <input type="file" id="file-input" accept="image/*" style="display: none;">
+            <div id="drop-zone" class="pildi-ala">
+                <img id="preview-image" class="eelvaade-pilt" style="display: none;">
+                <div id="upload-text">
+                    Lohista pilt siia või klõpsa valimiseks<br>
+                    <span style="color: #6b7280; font-size: 0.875rem;">Toetatud: JPG, PNG (max 16MB)</span>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" id="submit-button" class="esita-nupp" disabled>
+            Genereeri kaart
+        </button>
+    </div>
+
+    <div id="card-preview" class="kaardi-eelvaade">
+        <!-- Siia tuleb genereeritud kaart -->
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
 <script src="{{ url_for('static', filename='js/image_upload.js') }}"></script>
 {% endblock %}

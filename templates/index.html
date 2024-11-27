@@ -1,12 +1,31 @@
 {% extends "base.html" %}
 
-{% block title %}Welcome{% endblock %}
+{% block title %}Spordikaardid - Avaleht{% endblock %}
 
-{% block extra_css %}
+{% block extra_styles %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 {% endblock %}
 
 {% block content %}
-<h1>Sportscard Generator</h1>
+<div class="hero">
+    <h1>Tere tulemast Spordikaartide lehele</h1>
+    <p>Loo oma unikaalsed spordikaardid ronimise, parkuuri ja kiikingu jaoks. Lae üles oma parimad tegevuspildid ja saa personaalne kaart, mille raam vastab sinu oskustasemele.</p>
+</div>
 
+<div class="sport-grid">
+    <a href="{{ url_for('climbing') }}" class="sport-card climbing-card">
+        <h2>Ronimine</h2>
+        <p>Valitse kõrgusi oskuse ja kindlameelsusega. Genereeri oma ronimiskaart, mis näitab sinu muljetavaldavamaid saavutusi.</p>
+    </a>
+
+    <a href="{{ url_for('parkour') }}" class="sport-card parkour-card">
+        <h2>Parkuur</h2>
+        <p>Liigu läbi linnamaastiku stiili ja täpsusega. Loo oma parkuurikaart, mis näitab sinu parimaid trikke.</p>
+    </a>
+
+    <a href="{{ url_for('kiiking') }}" class="sport-card kiiking-card">
+        <h2>Kiiking</h2>
+        <p>Ületa piirid õhus pööreldes ja kõrgust vallutades. Saa oma personaalne kiikingukaart, mis näitab sinu saavutusi.</p>
+    </a>
+</div>
 {% endblock %}

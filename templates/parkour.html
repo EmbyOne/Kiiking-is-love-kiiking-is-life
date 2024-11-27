@@ -1,32 +1,49 @@
 {% extends "base.html" %}
+{% block title %}Parkuurikaardid{% endblock %}
 
-{% block title %}Parkour{% endblock %}
-
-{% block extra_css %}
+{% block extra_styles %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/parkour.css') }}">
 {% endblock %}
 
 {% block content %}
-<h2>Parkour</h2>
-<div class="parkuur" >
-    <p>
-        Parkuur on spordiala, mis keskendub liikumisvõimekusele, kiirusele, täpsusele ja stiilile. Võisteldes on eesmärk läbida rada võimalikult kiirelt ja puhtalt.
-        Parkuurimine on eriti populaarne linnades, kuna seal on palju erinevaid takistusi, mida parkuurijad saavad kasutada.
-        Parkuur on populaarsust kogunud filmidest ja sotsiaalmeediast, kuna see on üpriski eriline spordiala.
-    </p>
-</div>
-<div class="upload-container">
-    <div class="upload-square" id="drop-zone" onclick="document.getElementById('file-input').click()">
-        <input type="file" id="file-input" accept="image/*">
-        <img id="preview-image" class="preview-image" src="" style="display: none;">
-        <div class="upload-text" id="upload-text">Click or drag image here</div>
-    </div>
-    
-    <div class="form-container">
-        <input type="text" id="text-input" class="text-input" placeholder="Enter your text here">
-        <button id="submit-button" class="submit-button">Submit</button>
-    </div>
+
+<div class="leht-pealkiri">
+    <h1 id="sport-name" >Parkuurikaardid</h1>
 </div>
 
+<div class="kirjeldus">
+Parkuur on liikumisviis, mille eesmärk on jõuda ühest punktist teise võimalikult efektiivselt, kasutades selleks oma keha võimekust ja 
+ümbritsevat keskkonda. See hõlmab jooksmist, hüppamist, ronimist ja palju muid liikumisviise.
+</div>
+
+<div class="kaardi-vorm">
+    <div>
+        <div class="vorm-grupp">
+            <input type="text" id="text-input" class="teksti-sisend" placeholder="Sisesta sportlase nimi" required>
+        </div>
+
+        <div class="vorm-grupp">
+            <input type="file" id="file-input" accept="image/*" style="display: none;">
+            <div id="drop-zone" class="pildi-ala">
+                <img id="preview-image" class="eelvaade-pilt" style="display: none;">
+                <div id="upload-text">
+                    Lohista pilt siia või klõpsa valimiseks<br>
+                    <span style="color: #6b7280; font-size: 0.875rem;">Toetatud: JPG, PNG (max 16MB)</span>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" id="submit-button" class="esita-nupp" disabled>
+            Genereeri kaart
+        </button>
+    </div>
+
+    <div id="card-preview" class="kaardi-eelvaade">
+        <!-- Siia tuleb genereeritud kaart -->
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
 <script src="{{ url_for('static', filename='js/image_upload.js') }}"></script>
 {% endblock %}
