@@ -45,5 +45,7 @@ kasutades erinevaid tehnikaid ja varustust. Ronimine arendab nii keha kui ka vai
 {% endblock %}
 
 {% block scripts %}
+<script src="{{ url_for('static', filename='js/Confetti.js') }}"></script>
 <script src="{{ url_for('static', filename='js/image_upload.js') }}"></script>
+<script src="{{ url_for('static', filename='js/confetti-trigger.js') }}"></script>
 {% endblock %}
