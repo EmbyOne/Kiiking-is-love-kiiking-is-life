@@ -3,20 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}SportCards{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-    {% block extra_css %}{% endblock %}
+    {% block extra_styles %}{% endblock %}
 </head>
 <body>
-    <img src="{{ url_for('static', filename='images/burgir.png') }}" alt="">
-    <div class="nupud_container">
-        <div id = "nupud" class="activity-buttons">
-            <a href="/">Home</a>
-            <a href="/parkour">Parkour</a>
-            <a href="/kiiking">Kiiking</a>
-            <a href="/climbing">Climbing</a>
+    <nav class="nav">
+        <div class="nav-container">
+            <button class="nav-btn {% if active_page == 'home' %}active{% endif %}" data-sport="home" onclick="window.location.href='/'">Home</button>
+            <div class="nav-group">
+                <button class="nav-btn {% if active_page == 'parkour' %}active{% endif %}" data-sport="parkour" onclick="window.location.href='/parkour'">Parkour</button>
+                <button class="nav-btn {% if active_page == 'climbing' %}active{% endif %}" data-sport="climbing" onclick="window.location.href='/climbing'">Climbing</button>
+                <button class="nav-btn {% if active_page == 'kiiking' %}active{% endif %}" data-sport="kiiking" onclick="window.location.href='/kiiking'">Kiiking</button>
+            </div>
         </div>
-    </div>
-    {% block content %}{% endblock %}
+    </nav>
+
+    <main class="main">
+        <div class="content-card">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    {% block scripts %}{% endblock %}
 </body>
 </html>
