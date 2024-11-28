@@ -6,6 +6,13 @@
             --kiiking: rgb(59, 130, 246);   /* Blue */
         }
 
+        /* Disables scrolling */
+        html, body {
+            margin: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
         body {
             margin: 0;
             padding: 0;
