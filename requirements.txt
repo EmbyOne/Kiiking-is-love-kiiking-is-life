@@ -21,7 +21,6 @@ networkx==3.4.2
 numba==0.60.0
 numpy==1.26.4
 onnxruntime==1.20.1
-opencv @ file:///build/source/modules/python/package/dist/opencv-4.9.0-py3-none-any.whl#sha256=7f0d9928891586ce0a59ba6146ae9970d0ee931dd931b52da9088a18d88a120f
 opencv-python-headless==4.10.0.84
 packaging==24.2
 pillow==11.0.0
