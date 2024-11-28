@@ -104,3 +104,22 @@
     padding: 1rem;
     text-align: center;
 }
+
+#card-preview {
+    margin-top: -50px;
+}
+
+.download-button {
+    background-color: rgba(17, 24, 39, 0.7);
+    padding: 8px 16px;
+    border-radius: 4px;
+    color: #90a4ae;
+    text-decoration: none;
+    transition: color 0.3s;
+    border: 1px solid #1f2937;
+    border-color: var(--sport-dark);
+}
+
+.download-button:hover {
+    color: var(--sport-color);
+}

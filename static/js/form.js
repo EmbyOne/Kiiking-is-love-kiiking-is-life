@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Näita genereeritud kaarti eelvaate alas
                 document.getElementById('card-preview').innerHTML = 
                     `<img src="${result.card}" alt="Generated card" style="max-width: 100%;">
-                     <a href="${result.card}" download class="submit-button" style="display: inline-block; margin-top: 1rem;">
+                     <a href="${result.card}" download class="download-button" style="display: inline-block; margin-top: 1rem;">
                          Download Card
                      </a>`;
                 // tühjenda vorm peale edukat edastust
