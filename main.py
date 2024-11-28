@@ -55,48 +55,62 @@ def roll_stats(rarity:int) -> list:
 
 
 def compile_image(sport, rarity_name, player_image, player_name, stats):
-    # Load frame and player image
+    # Load frame
     frame_path = Path(f'card_frames/{sport}/{rarity_name}.png')
     frame = Image.open(frame_path).convert("RGBA")
     width, height = frame.size
     
-    # Remove background from player image and resize
-    player = Image.open(player_image)
-    player = remove(player)
-    player = player.resize((width//2, int(height/3)), Image.LANCZOS)
+    # create card img and add frame
+    card = Image.new("RGBA", (width, height))
+    card.paste(frame, (0, 0))
+
+    # crop player image to square based on largest side
+    player_image = Image.open(player_image)
+    sides = player_image.size
+    square_size = min(sides)
+    x = (sides[0] - square_size) // 2
+    y = (sides[1] - square_size) // 2
+    player_image = player_image.crop((x, y, x + square_size, y + square_size))
+
+    # remove background from player image and resize
+    player_image = remove(player_image)
+    player_image = player_image.resize((width//2, int(height/3)), Image.LANCZOS)
     
-    # Create canvas and paste frame
-    canvas = Image.new("RGBA", (width, height))
-    canvas.paste(frame, (0, 0))
+    # add player image to card
+    player_y = int(height//4.7)
+    player_x = (width - player_image.size[0])//2
+    card.paste(player_image, (player_x, player_y), player_image)
     
-    # Paste player image in sections 2-3 (centered)
-    player_y = height//4 # 6
-    player_x = (width - player.size[0])//2
-    canvas.paste(player, (player_x, player_y), player)
+    # utility to add text to the card
+    draw = ImageDraw.Draw(card)
     
-    # Add text
-    draw = ImageDraw.Draw(canvas)
+    # calculate proper font size for the current player name length
+    name_size = width//15
+    name_font = ImageFont.truetype("fonts/Raleway-Bold.ttf", name_size)
+    while draw.textlength(player_name.upper(), font=name_font) > width * 0.58:
+        name_size -= 1
+        name_font = ImageFont.truetype("fonts/Raleway-Bold.ttf", name_size)
+
+    # add player name in all caps
+    name_y = height//6
+    draw.text((width//2, name_y), player_name.upper(), font=name_font, anchor="mm", fill="white")
     
-    # Name at top (section 1)
-    name_font = ImageFont.truetype("fonts/Raleway-Bold.ttf", size=width//15)
-    name_y = height//6 #12
-    draw.text((width//2, name_y), player_name, font=name_font, anchor="mm", fill="white")
-    
-    # Stats in sections 4-5
-    stats_font = ImageFont.truetype("fonts/RobotoCondensed-Medium.ttf", size=width//20)
+    # add stats
+    stats_font = ImageFont.truetype("fonts/RobotoCondensed-Medium.ttf", size=width//16)
     stats_y_start = height * 0.6
     stats_spacing = height//10
     
-    left_x = width * 0.35 # width/4
-    right_x = width * 0.65 # width * 3//4
+    left_x = width * 0.33
+    right_x = width * 0.67
    
+    # writes the stats with whitespace between them
     for i in range(3):
         draw.text((left_x, stats_y_start + i*stats_spacing), stats[i], 
             font=stats_font, anchor="mm", fill="white")
         draw.text((right_x, stats_y_start + i*stats_spacing), stats[i+3], 
             font=stats_font, anchor="mm", fill="white")
     
-    return canvas
+    return card
 
 
 @app.route('/generate', methods=['POST'])
