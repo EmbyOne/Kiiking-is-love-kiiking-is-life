@@ -3,7 +3,7 @@ builder = "nixpacks"
 buildCommand = "pip install -r requirements.txt"
 
 [deploy]
-startCommand = "gunicorn main:app --workers=17 --bind 0.0.0.0:8080"
+startCommand = "gunicorn main:app --workers=4 --bind 0.0.0.0:8080"
 healthcheckPath = "/"
 
 [service.web]

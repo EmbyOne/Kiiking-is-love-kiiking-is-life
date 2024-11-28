@@ -4,7 +4,14 @@ import base64, io
 from random import random, randint
 from rembg import remove
 from pathlib import Path
+import onnxruntime as ort
+import time
 #from flask_cors import CORS 
+
+# performance options for onnx (rembg dependancy)
+sess_options = ort.SessionOptions()
+sess_options.graph_optimization_level = ort.GraphOptimizationLevel.ORT_ENABLE_ALL
+sess_options.intra_op_num_threads = 8
 
 app = Flask(__name__)
 #CORS(app) # might be needed for iframe to work with actual server
@@ -55,6 +62,7 @@ def roll_stats(rarity:int) -> list:
 
 
 def compile_image(sport, rarity_name, player_image, player_name, stats):
+    start = time.time()
     # Load frame
     frame_path = Path(f'card_frames/{sport}/{rarity_name}.png')
     frame = Image.open(frame_path).convert("RGBA")
@@ -72,10 +80,18 @@ def compile_image(sport, rarity_name, player_image, player_name, stats):
     y = (sides[1] - square_size) // 2
     player_image = player_image.crop((x, y, x + square_size, y + square_size))
 
+    print('-------------')
+    print(f'time taken: {time.time() - start}')
+
+    # downscale
+    player_image.thumbnail((800, 800), Image.Resampling.LANCZOS)
+   
     # remove background from player image and resize
-    player_image = remove(player_image)
-    player_image = player_image.resize((width//2, int(height/3)), Image.LANCZOS)
+    removed_bg = remove(player_image)
+    player_image = removed_bg.resize((width//2, int(height/3)), Image.Resampling.LANCZOS)
     
+    print(f'time taken: {time.time() - start}')
+
     # add player image to card
     player_y = int(height//4.7)
     player_x = (width - player_image.size[0])//2
@@ -95,6 +111,8 @@ def compile_image(sport, rarity_name, player_image, player_name, stats):
     name_y = height//6
     draw.text((width//2, name_y), player_name.upper(), font=name_font, anchor="mm", fill="white")
     
+    print(f'time taken: {time.time() - start}')
+
     # add stats
     stats_font = ImageFont.truetype("fonts/RobotoCondensed-Medium.ttf", size=width//16)
     stats_y_start = height * 0.6
@@ -110,6 +128,8 @@ def compile_image(sport, rarity_name, player_image, player_name, stats):
         draw.text((right_x, stats_y_start + i*stats_spacing), stats[i+3], 
             font=stats_font, anchor="mm", fill="white")
     
+    print(f'time taken: {time.time() - start}')
+
     return card
 
 
