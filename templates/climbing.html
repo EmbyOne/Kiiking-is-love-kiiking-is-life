@@ -8,7 +8,7 @@
 {% block content %}
 
 <div class="leht-pealkiri">
-    <h1 id="sport-name" >Ronimiskaardid</h1>
+    <h1 id="ronimine" >Ronimiskaardid</h1> <!-- DONT CHANGE ID -->
 </div>
 
 <div class="kirjeldus">
@@ -28,7 +28,7 @@ kasutades erinevaid tehnikaid ja varustust. Ronimine arendab nii keha kui ka vai
                 <img id="preview-image" class="eelvaade-pilt" style="display: none;">
                 <div id="upload-text">
                     Lohista pilt siia või klõpsa valimiseks<br>
-                    <span style="color: #6b7280; font-size: 0.875rem;">Toetatud: JPG, PNG (max 16MB)</span>
+                    <span style="color: #6b7280; font-size: 0.875rem;">Toetatud: JPG, PNG (max 5MB)</span>
                 </div>
             </div>
         </div>
@@ -46,6 +46,6 @@ kasutades erinevaid tehnikaid ja varustust. Ronimine arendab nii keha kui ka vai
 
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/Confetti.js') }}"></script>
-<script src="{{ url_for('static', filename='js/image_upload.js') }}"></script>
+<script src="{{ url_for('static', filename='js/form.js') }}"></script>
 <script src="{{ url_for('static', filename='js/confetti-trigger.js') }}"></script>
 {% endblock %}
