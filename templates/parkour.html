@@ -45,5 +45,7 @@ Parkuur on liikumisviis, mille eesmärk on jõuda ühest punktist teise võimali
 {% endblock %}
 
 {% block scripts %}
+<script src="{{ url_for('static', filename='js/fireworks.js') }}"></script>
+<script src="{{ url_for('static', filename='js/fireworks-trigger.js') }}"></script>
 <script src="{{ url_for('static', filename='js/image_upload.js') }}"></script>
 {% endblock %}
