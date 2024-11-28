@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const uploadText = document.getElementById('upload-text');
     const textInput = document.getElementById('text-input');
     const submitButton = document.getElementById('submit-button');
-    // kuna on oluline mis spordi lehel parasjagu oleme, siis saame selle nimetuse võtta ainsast h2 elemendist mida kasutame
-    const sportName = document.getElementsByTagName('h2')[0].innerHTML;
+    // Mis spordiga parasjuga tegu on
+    const sportName = document.querySelector('.leht-pealkiri h1').id
     
     // muutuja kuhu lisame viimatise faili info
     let currentFile = null;
@@ -15,6 +15,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Reageerib faili sisse tirimisele
     ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
         dropZone.addEventListener(eventName, preventDefaults, false);
+    });
+
+    // avab kasutaja default failimenüü
+    dropZone.addEventListener('click', function() {
+        fileInput.click();
     });
 
     // ei lase brauseril avada sissetiritud faili (veebileht saab sisendina)
@@ -42,6 +47,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // võtab faili vastu ja kuvab selle eelvaate
     function handleFile(file) {
+        // Kontrolli faili suurust (5MB)
+        if (file.size > 5 * 1024 * 1024) {
+            alert('File is too large. Maximum size is 5MB.');
+            return;
+        }
         currentFile = file;
         const reader = new FileReader();
         
@@ -52,13 +62,20 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         
         reader.readAsDataURL(file);
+        validateForm();
+    }
+
+    textInput.addEventListener('input', validateForm);
+
+    function validateForm() {
+        submitButton.disabled = !currentFile || !textInput.value;
     }
 
     // edastab nupu vajutusel vormi sisu
     submitButton.addEventListener('click', async function() {
         // katkesta kui faili või teksti ei lisatud
         if (!currentFile || !textInput.value) {
-            alert('Please select an image and name first');
+            alert('Please select an image and enter a name');
             return;
         }
 
@@ -78,14 +95,19 @@ document.addEventListener('DOMContentLoaded', function() {
             const result = await response.json();
             
             if (response.ok) {
-                alert('Upload successful!');
+                // Näita genereeritud kaarti eelvaate alas
+                document.getElementById('card-preview').innerHTML = 
+                    `<img src="${result.card}" alt="Generated card" style="max-width: 100%;">
+                     <a href="${result.card}" download class="submit-button" style="display: inline-block; margin-top: 1rem;">
+                         Download Card
+                     </a>`;
                 // tühjenda vorm peale edukat edastust
                 resetForm();
             } else {
                 alert('Upload failed: ' + result.error);
             }
         } catch (error) {
-            alert('Upload failed: ' + error.message);
+            alert('Error generating card: ' + error.message);
         }
     });
 
@@ -96,5 +118,6 @@ document.addEventListener('DOMContentLoaded', function() {
         uploadText.style.display = 'block';
         textInput.value = '';
         fileInput.value = '';
+        submitButton.disabled = true;
     }
 });
