@@ -6,7 +6,7 @@ from rembg import remove
 from pathlib import Path
 import onnxruntime as ort
 import time
-#from flask_cors import CORS 
+from flask_cors import CORS 
 
 # settingud parema kiiruse jaoks ONNXis(rembg dependancy)
 sess_options = ort.SessionOptions()
@@ -14,7 +14,7 @@ sess_options.graph_optimization_level = ort.GraphOptimizationLevel.ORT_ENABLE_AL
 sess_options.intra_op_num_threads = 8
 
 app = Flask(__name__)
-#CORS(app) # võibolla vajalik, et päris serveriga iframe töötaks
+CORS(app) # võibolla vajalik, et päris serveriga iframe töötaks
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 # maksimaalne suurus mida server ühe requesti või responsei sees saab töödelda
