@@ -80,8 +80,8 @@ def compile_image(sport, rarity_name, player_image, player_name, stats):
     y = (sides[1] - square_size) // 2
     player_image = player_image.crop((x, y, x + square_size, y + square_size))
 
-    print('-------------')
-    print(f'time taken: {time.time() - start}')
+    #print('-------------')
+    #print(f'time taken: {time.time() - start}')
 
     # downscale
     player_image.thumbnail((800, 800), Image.Resampling.LANCZOS)
@@ -90,7 +90,7 @@ def compile_image(sport, rarity_name, player_image, player_name, stats):
     removed_bg = remove(player_image)
     player_image = removed_bg.resize((width//2, int(height/3)), Image.Resampling.LANCZOS)
     
-    print(f'time taken: {time.time() - start}')
+    #print(f'time taken: {time.time() - start}')
 
     # add player image to card
     player_y = int(height//4.7)
@@ -111,7 +111,7 @@ def compile_image(sport, rarity_name, player_image, player_name, stats):
     name_y = height//6
     draw.text((width//2, name_y), player_name.upper(), font=name_font, anchor="mm", fill="white")
     
-    print(f'time taken: {time.time() - start}')
+    #print(f'time taken: {time.time() - start}')
 
     # add stats
     stats_font = ImageFont.truetype("fonts/RobotoCondensed-Medium.ttf", size=width//16)
@@ -128,7 +128,7 @@ def compile_image(sport, rarity_name, player_image, player_name, stats):
         draw.text((right_x, stats_y_start + i*stats_spacing), stats[i+3], 
             font=stats_font, anchor="mm", fill="white")
     
-    print(f'time taken: {time.time() - start}')
+    #print(f'time taken: {time.time() - start}')
 
     return card
 

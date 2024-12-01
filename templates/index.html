@@ -9,23 +9,24 @@
 {% block content %}
 <div class="hero">
     <h1>Tere tulemast Spordikaartide lehele</h1>
-    Sinu <strong>oskused</strong>. Sinu <strong>stiil</strong>. Sinu <strong>kaart</strong>. Lae üles oma parimad hetked ronimises, parkuuris või kiikingus ning saa ainulaadne <strong>spordikaart</strong>, mis peegeldab sinu taset. Muuda iga saavutus <strong>visuaalseks meistriteoseks</strong>.    
+    Sinu <strong>oskused</strong>. Sinu <strong>stiil</strong>. Sinu <strong>kaart</strong>. <br>
+    Lae üles oma parimad hetked ronimises, parkuuris või kiikingus <br> ning saa ainulaadne spordikaart, mis peegeldab sinu taset.
 </div>
 
 <div class="sport-grid">
     <a href="{{ url_for('climbing') }}" class="sport-card climbing-card">
         <h2>Ronimine</h2>
-        <p>Valitse kõrgusi oskuse ja kindlameelsusega. Genereeri oma ronimiskaart, mis näitab sinu muljetavaldavamaid saavutusi.</p>
+        <p>Valluta seinu, riffe ja mägesid nagu gravitatsioon oleks vaid soovitus. Tõesta oma ronimiskaardil, et kõrgus on sinu loomulik keskkond.</p>
     </a>
 
     <a href="{{ url_for('parkour') }}" class="sport-card parkour-card">
         <h2>Parkuur</h2>
-        <p>Liigu läbi linnamaastiku stiili ja täpsusega. Loo oma parkuurikaart, mis näitab sinu parimaid trikke.</p>
+        <p>Muuda linn oma mänguväljakuks ja takistused võimalusteks. Loo parkuurikaart, mis jäädvustab sinu kõige hulljulgemad hüpped ja sujuvamad trikid.</p>
     </a>
 
     <a href="{{ url_for('kiiking') }}" class="sport-card kiiking-card">
         <h2>Kiiking</h2>
-        <p>Ületa piirid õhus pööreldes ja kõrgust vallutades. Saa oma personaalne kiikingukaart, mis näitab sinu saavutusi.</p>
+        <p>Purusta kõrgusrekordeid ja trotsi füüsikaseadusi võimsate pööretega. Tõesta kiikingukaardiga, et taevas pole piir.</p>
     </a>
 </div>
 {% endblock %}
