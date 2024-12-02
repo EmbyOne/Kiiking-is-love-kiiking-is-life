@@ -1,3 +1,4 @@
+// Autor: Magnus
 document.addEventListener('DOMContentLoaded', function() {
     // Leiab vajalikud html elemendid 
     const dropZone = document.getElementById('drop-zone');
