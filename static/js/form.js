@@ -1,3 +1,4 @@
+// Autor: Magnus, Claude 3.5 Sonnet abiga (üks koodijupp sai valmis, söötsin AIle sisse, kordamööda muutsime, etc)
 document.addEventListener('DOMContentLoaded', function() {
     // Leiab vajalikud html elemendid 
     const dropZone = document.getElementById('drop-zone');
